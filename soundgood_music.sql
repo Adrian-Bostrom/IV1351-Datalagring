@@ -26,8 +26,8 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.student (
     student_id serial PRIMARY KEY,
-    sibling_id integer,
-    contact_id integer --FK
+    sibling_id INT,
+    contact_id INT references contact_person(contact_id) --FK
 );
 
 CREATE TABLE public.contact_person (
@@ -41,12 +41,12 @@ CREATE TABLE public.contact_person (
 
 CREATE TABLE public.instructor (
     person_id serial PRIMARY KEY,
-    ensamble_proficiency BOOLEAN NOT NULL -- TODO is bool a thing?
+    ensamble_proficiency BOOLEAN NOT NULL
 );
 
 CREATE TABLE public.instructor_instruments (
     instrument_instructable_id serial PRIMARY KEY,
-    person_id integer NOT NULL, --FK
+    person_id INT NOT NULL references person(id), --FK
     instrument varchar(30) NOT NULL
 );
 
@@ -60,7 +60,7 @@ CREATE TABLE public.person (
 );
 
 CREATE TABLE public.address (
-    zip integer NOT NULL,
+    zip INT NOT NULL,
     city varchar(30) NOT NULL,
     street varchar(30) NOT NULL
 );
@@ -69,45 +69,45 @@ CREATE TABLE public.rental_record (
     rent_id serial PRIMARY KEY,
     rent_start DATE NOT NULL,
     rent_end DATE,
-    instrument_id integer NOT NULL, --FK
-    person_id integer NOT NULL --FK
+    instrument_id INT references renting_instrument(instrument_id) NOT NULL, --FK
+    person_id INT references person(id) NOT NULL --FK
 );
 
 CREATE TABLE public.renting_instrument (
     instrument_id serial PRIMARY KEY,
-    stock integer NOT NULL,
+    stock INT NOT NULL,
     type varchar(20) NOT NULL,
     brand varchar(30) NOT NULL,
-    rent_price integer NOT NULL
+    rent_price INT NOT NULL
 );
 
 CREATE TABLE public.lesson (
     lesson_id serial PRIMARY KEY,
     time TIME(6) NOT NULL, -- TODO check time types
     date DATE NOT NULL,
-    price_id integer NOT NULL, --FK
-    person_id integer NOT NULL --FK
+    price_id INT NOT NULL, --FK
+    person_id INT NOT NULL --FK
 );
 
 CREATE TABLE public.group_lesson (
     lesson_id serial PRIMARY KEY, --FK (inherited?)
-    min_enrollments integer NOT NULL,
-    max_places integer NOT NULL,
-    lesson_level integer NOT NULL,
+    min_enrollments INT NOT NULL,
+    max_places INT NOT NULL,
+    lesson_level INT NOT NULL,
     instrument varchar(30)
 );
 
 CREATE TABLE public.individual_lesson (
     lesson_id serial PRIMARY KEY, --FK (inherited?)
-    lesson_level integer NOT NULL,
+    lesson_level INT NOT NULL,
     instrument varchar(30)
 );
 
 CREATE TABLE public.ensemble (
     lesson_id serial PRIMARY KEY, --FK (inherited?)
     genre varchar(10) NOT NULL,
-    min_num_students integer NOT NULL,
-    max_num_students integer NOT NULL
+    min_num_students INT NOT NULL,
+    max_num_students INT NOT NULL
 );
 
 CREATE TABLE public.pricing_scheme (
@@ -115,8 +115,3 @@ CREATE TABLE public.pricing_scheme (
     price float(10) NOT NULL,
     change_date DATE NOT NULL
 );
-
---WITH person_id AS
---(INSERT INTO public.person(person_number, first_name, last_name, phone, email)
---VALUES ('192322059135', 'Goran', 'Persson', '0723682068', 'goran.persson@gmail.com')
---RETURNING id),
