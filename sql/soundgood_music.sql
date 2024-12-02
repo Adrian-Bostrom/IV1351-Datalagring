@@ -155,7 +155,7 @@ REFERENCES public.lesson(lesson_id);
 ALTER TABLE public.student_attending
 ADD CONSTRAINT student_id
 FOREIGN KEY (student_id)
-REFERENCES public.lesson(student_id);
+REFERENCES public.student(student_id);
 
 ALTER TABLE public.student_attending
 ADD CONSTRAINT lesson_id
