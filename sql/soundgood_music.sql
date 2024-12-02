@@ -97,6 +97,11 @@ ADD CONSTRAINT contact_id
 FOREIGN KEY (contact_id)
 REFERENCES public.contact_person(contact_id);
 
+ALTER TABLE public.student
+ADD CONSTRAINT person_id
+FOREIGN KEY (person_id)
+REFERENCES public.person(id);
+
 ALTER TABLE public.instructor_instruments
 ADD CONSTRAINT person_id
 FOREIGN KEY (person_id)
