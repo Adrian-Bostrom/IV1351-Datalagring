@@ -57,7 +57,7 @@ CREATE TABLE public.renting_instrument (
 
 CREATE TABLE public.lesson (
     lesson_id serial PRIMARY KEY,
-    time TIME(6) NOT NULL, -- TODO check time types
+    time TIME(6) NOT NULL,
     date DATE NOT NULL,
     price_id INT NOT NULL, --FK
     person_id INT NOT NULL --FK
