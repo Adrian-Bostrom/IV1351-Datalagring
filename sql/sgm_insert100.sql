@@ -290,30 +290,28 @@ VALUES
   (19, TRUE),
   (20, FALSE);
 
-INSERT INTO public.instructor_instruments (instrument)
+INSERT INTO public.instructor_instruments (person_id, instrument)
 VALUES
-  ('Harp'),
-  ('Piano'),
-  ('Bass'),
-  ('Drums'),
-  ('Bass'),
-  ('Drums'),
-  ('Piano'),
-  ('Drums'),
-  ('Drums'),
-  ('Trombone'),
-  ('Drums'),
-  ('Piano'),
-  ('Trombone'),
-  ('Synth'),
-  ('Piano'),
-  ('Harp'),
-  ('Drums'),
-  ('Trombone'),
-  ('Drums'),
-  ('Trombone'),
-  ('Synth'),
-  ('Guitar');
+  (1,'Harp'),
+  (2,'Piano'),
+  (3,'Bass'),
+  (4,'Drums'),
+  (5,'Bass'),
+  (6,'Drums'),
+  (7,'Piano'),
+  (8,'Drums'),
+  (9,'Drums'),
+  (10,'Trombone'),
+  (11,'Drums'),
+  (12,'Piano'),
+  (13,'Trombone'),
+  (14,'Synth'),
+  (15,'Piano'),
+  (16,'Harp'),
+  (17,'Drums'),
+  (18,'Trombone'),
+  (19,'Drums'),
+  (20,'Trombone');
 
 INSERT INTO public.address (zip,city,street)
 VALUES
