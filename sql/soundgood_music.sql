@@ -1,11 +1,4 @@
-CREATE TABLE public.person (
-    id serial PRIMARY KEY,
-    person_number varchar(12) NOT NULL,
-    first_name varchar(50) NOT NULL,
-    last_name varchar(50) NOT NULL,
-    phone varchar(20) NOT NULL,
-    email varchar(50) NOT NULL
-);
+
 
 CREATE TABLE public.contact_person (
     contact_id serial PRIMARY KEY,
@@ -35,9 +28,24 @@ CREATE TABLE public.address (
 
 CREATE TABLE public.instructor_instruments (
     instrument_instructable_id serial PRIMARY KEY,
-    person_id INT NOT NULL references person(id), --FK
+    person_id INT, -- NOT NULL references person(id), --FK
     instrument varchar(30) NOT NULL
 );
+
+CREATE TABLE public.person (
+    id serial PRIMARY KEY,
+    person_number varchar(12) NOT NULL,
+    first_name varchar(50) NOT NULL,
+    last_name varchar(50) NOT NULL,
+    phone varchar(20) NOT NULL,
+    email varchar(50) NOT NULL
+);
+
+CREATE TABLE public.address (
+    address_id serial PRIMARY KEY;
+    zip INT NOT NULL,
+    city varchar(30) NOT NULL,
+    street varchar(30) NOT NULL
 
 CREATE TABLE public.renting_instrument (
     instrument_id serial PRIMARY KEY,
@@ -51,8 +59,8 @@ CREATE TABLE public.rental_record (
     rent_id serial PRIMARY KEY,
     rent_start DATE NOT NULL,
     rent_end DATE,
-    instrument_id INT references renting_instrument(instrument_id) NOT NULL, --FK
-    person_id INT references person(id) NOT NULL --FK
+    instrument_id INT, --references renting_instrument(instrument_id) NOT NULL, --FK
+    person_id INT --references person(id) NOT NULL --FK
 );
 
 CREATE TABLE public.lesson (
@@ -89,3 +97,54 @@ CREATE TABLE public.pricing_scheme (
     price float(10) NOT NULL,
     change_date DATE NOT NULL
 );
+
+
+ALTER TABLE public.student
+ADD CONSTRAINT contact_id
+FOREIGN KEY (contact_id)
+REFERENCES public.contact_person(contact_id);
+
+ALTER TABLE public.instructor_instruments
+ADD CONSTRAINT person_id
+FOREIGN KEY (person_id)
+REFERENCES public.person(id);
+
+ALTER TABLE public.rental_record
+ADD CONSTRAINT instrument_id
+FOREIGN KEY (instrument_id)
+REFERENCES public.renting_instrument(instrument_id);
+
+ALTER TABLE public.rental_record
+ADD CONSTRAINT person_id
+FOREIGN KEY (person_id)
+REFERENCES public.person(id);
+
+ALTER TABLE public.instructor
+ADD CONSTRAINT person_id
+FOREIGN KEY (person_id)
+REFERENCES public.person(id);
+
+ALTER TABLE public.lesson
+ADD CONSTRAINT person_id
+FOREIGN KEY (person_id)
+REFERENCES public.person(id);
+
+ALTER TABLE public.lesson
+ADD CONSTRAINT price_id
+FOREIGN KEY (price_id)
+REFERENCES public.pricing_scheme(price_id);
+
+ALTER TABLE public.group_lesson
+ADD CONSTRAINT lesson_id
+FOREIGN KEY (lesson_id)
+REFERENCES public.lesson(lesson_id);
+
+ALTER TABLE public.individual_lesson
+ADD CONSTRAINT lesson_id
+FOREIGN KEY (lesson_id)
+REFERENCES public.lesson(lesson_id);
+
+ALTER TABLE public.ensemble
+ADD CONSTRAINT lesson_id
+FOREIGN KEY (lesson_id)
+REFERENCES public.lesson(lesson_id);
