@@ -1,7 +1,10 @@
-CREATE TABLE public.student (
-    student_id serial PRIMARY KEY,
-    sibling_id INT,
-    contact_id INT references contact_person(contact_id) --FK
+CREATE TABLE public.person (
+    id serial PRIMARY KEY,
+    person_number varchar(12) NOT NULL,
+    first_name varchar(50) NOT NULL,
+    last_name varchar(50) NOT NULL,
+    phone varchar(20) NOT NULL,
+    email varchar(50) NOT NULL
 );
 
 CREATE TABLE public.contact_person (
@@ -13,24 +16,15 @@ CREATE TABLE public.contact_person (
     email varchar(50) NOT NULL
 );
 
+CREATE TABLE public.student (
+    student_id serial PRIMARY KEY,
+    sibling_id INT,
+    contact_id INT references contact_person(contact_id) --FK
+);
+
 CREATE TABLE public.instructor (
     person_id serial PRIMARY KEY,
     ensamble_proficiency BOOLEAN NOT NULL
-);
-
-CREATE TABLE public.instructor_instruments (
-    instrument_instructable_id serial PRIMARY KEY,
-    person_id INT NOT NULL references person(id), --FK
-    instrument varchar(30) NOT NULL
-);
-
-CREATE TABLE public.person (
-    id serial PRIMARY KEY,
-    person_number varchar(12) NOT NULL,
-    first_name varchar(50) NOT NULL,
-    last_name varchar(50) NOT NULL,
-    phone varchar(20) NOT NULL,
-    email varchar(50) NOT NULL
 );
 
 CREATE TABLE public.address (
@@ -39,12 +33,10 @@ CREATE TABLE public.address (
     street varchar(100) NOT NULL
 );
 
-CREATE TABLE public.rental_record (
-    rent_id serial PRIMARY KEY,
-    rent_start DATE NOT NULL,
-    rent_end DATE,
-    instrument_id INT references renting_instrument(instrument_id) NOT NULL, --FK
-    person_id INT references person(id) NOT NULL --FK
+CREATE TABLE public.instructor_instruments (
+    instrument_instructable_id serial PRIMARY KEY,
+    person_id INT NOT NULL references person(id), --FK
+    instrument varchar(30) NOT NULL
 );
 
 CREATE TABLE public.renting_instrument (
@@ -53,6 +45,14 @@ CREATE TABLE public.renting_instrument (
     type varchar(20) NOT NULL,
     brand varchar(30) NOT NULL,
     rent_price INT NOT NULL
+);
+
+CREATE TABLE public.rental_record (
+    rent_id serial PRIMARY KEY,
+    rent_start DATE NOT NULL,
+    rent_end DATE,
+    instrument_id INT references renting_instrument(instrument_id) NOT NULL, --FK
+    person_id INT references person(id) NOT NULL --FK
 );
 
 CREATE TABLE public.lesson (
