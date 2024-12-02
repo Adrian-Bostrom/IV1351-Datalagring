@@ -1,5 +1,3 @@
-
-
 CREATE TABLE public.contact_person (
     contact_id serial PRIMARY KEY,
     relation varchar(50) NOT NULL,
@@ -12,18 +10,12 @@ CREATE TABLE public.contact_person (
 CREATE TABLE public.student (
     student_id serial PRIMARY KEY,
     sibling_id INT,
-    contact_id INT references contact_person(contact_id) --FK
+    contact_id INT --references contact_person(contact_id) --FK
 );
 
 CREATE TABLE public.instructor (
     person_id serial PRIMARY KEY,
     ensamble_proficiency BOOLEAN NOT NULL
-);
-
-CREATE TABLE public.address (
-    zip INT NOT NULL,
-    city varchar(100) NOT NULL,
-    street varchar(100) NOT NULL
 );
 
 CREATE TABLE public.instructor_instruments (
@@ -46,6 +38,7 @@ CREATE TABLE public.address (
     zip INT NOT NULL,
     city varchar(30) NOT NULL,
     street varchar(30) NOT NULL
+);
 
 CREATE TABLE public.renting_instrument (
     instrument_id serial PRIMARY KEY,

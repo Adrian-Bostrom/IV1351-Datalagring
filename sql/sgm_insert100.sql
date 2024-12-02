@@ -101,7 +101,7 @@ VALUES
   ('237734415376','Marsden','Cummings','072 078 0555','ultrices@yahoo.ca'),
   ('056577781673','Maite','Mcneil','072 466 7572','curabitur.ut@yahoo.com');
 
-INSERT INTO public.student (sibling_id,contact_id) -- 0s should be NULL 1s should be randoms
+INSERT INTO public.student (sibling_id) -- 0s should be NULL 1s should be randoms
 VALUES
   (NULL,1),
   (41,2),
