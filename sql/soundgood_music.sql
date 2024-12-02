@@ -15,7 +15,7 @@ CREATE TABLE public.student (
 
 CREATE TABLE public.student_attending (
     student_id serial,
-    lesson_id serial,
+    lesson_id serial
 );
 
 CREATE TABLE public.instructor (
