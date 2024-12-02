@@ -36,8 +36,8 @@ CREATE TABLE public.person (
 CREATE TABLE public.address (
     address_id serial PRIMARY KEY,
     zip INT NOT NULL,
-    city varchar(30) NOT NULL,
-    street varchar(30) NOT NULL
+    city varchar(100) NOT NULL,
+    street varchar(100) NOT NULL
 );
 
 CREATE TABLE public.renting_instrument (

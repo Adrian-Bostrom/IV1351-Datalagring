@@ -581,6 +581,7 @@ VALUES
   (75,'Piano','Jackson',1850),
   (79,'Trombone','Kirby',2391),
   (36,'Violin','Hanson',3360);
+  
 
 INSERT INTO public.lesson (time,date,price_id,person_id)
 VALUES
