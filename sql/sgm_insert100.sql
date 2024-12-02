@@ -184,7 +184,7 @@ VALUES
   ('Mother','Brynn','Rutledge','0725353356','mollis.phasellus@icloud.couk'),
   ('Father','Shoshana','Dale','0727379473','sem.vitae@hotmail.org');
 
-INSERT INTO public.student (person_id,sibling_id,contact_id) -- 0s should be NULL 1s should be randoms
+INSERT INTO public.student (student_id,sibling_id,contact_id) -- 0s should be NULL 1s should be randoms
 VALUES
   (21,NULL,1),
   (22,41,2),
