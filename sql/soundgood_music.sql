@@ -13,6 +13,11 @@ CREATE TABLE public.student (
     contact_id INT --references contact_person(contact_id) --FK
 );
 
+CREATE TABLE public.student_attending (
+    student_id serial,
+    lesson_id serial,
+);
+
 CREATE TABLE public.instructor (
     person_id serial PRIMARY KEY,
     ensamble_proficiency BOOLEAN NOT NULL
@@ -143,6 +148,16 @@ FOREIGN KEY (lesson_id)
 REFERENCES public.lesson(lesson_id);
 
 ALTER TABLE public.ensemble
+ADD CONSTRAINT lesson_id
+FOREIGN KEY (lesson_id)
+REFERENCES public.lesson(lesson_id);
+
+ALTER TABLE public.student_attending
+ADD CONSTRAINT student_id
+FOREIGN KEY (student_id)
+REFERENCES public.lesson(student_id);
+
+ALTER TABLE public.student_attending
 ADD CONSTRAINT lesson_id
 FOREIGN KEY (lesson_id)
 REFERENCES public.lesson(lesson_id);
