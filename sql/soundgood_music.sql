@@ -36,7 +36,7 @@ CREATE TABLE public.person (
 CREATE TABLE public.address (
     zip INT NOT NULL,
     city varchar(30) NOT NULL,
-    street varchar(30) NOT NULL
+    street varchar(100) NOT NULL
 );
 
 CREATE TABLE public.rental_record (

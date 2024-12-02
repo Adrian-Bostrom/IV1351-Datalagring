@@ -184,7 +184,7 @@ VALUES
   (NULL,79),
   (NULL,80);
 
-INSERT INTO public.contact_person (person_number,relation,first_name,last_name,phone,email)
+INSERT INTO public.contact_person (relation,first_name,last_name,phone,email)
 VALUES
   ('Mother','Xaviera','Wong','0720222595','eu.ligula.aenean@google.net'),
   ('Mother','Blake','Buck','0722592387','tempus@yahoo.edu'),
