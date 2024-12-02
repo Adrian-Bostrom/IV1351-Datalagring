@@ -39,11 +39,11 @@ to insert or create a database.
 
 List tables
 
-	SELECT * FROM infromation_schema.table;
+	SELECT * FROM information_schema.table;
 
 Clear the public schema
 
-	DROP SCHEME public CASCADE;
+	DROP SCHEMA public CASCADE;
 
 Create the public schema again
 
