@@ -35,7 +35,8 @@ CREATE TABLE public.person (
     first_name varchar(50) NOT NULL,
     last_name varchar(50) NOT NULL,
     phone varchar(20) NOT NULL,
-    email varchar(50) NOT NULL
+    email varchar(50) NOT NULL,
+    address_id INT NOT NULL
 );
 
 CREATE TABLE public.address (
@@ -161,3 +162,8 @@ ALTER TABLE public.student_attending
 ADD CONSTRAINT lesson_id
 FOREIGN KEY (lesson_id)
 REFERENCES public.lesson(lesson_id);
+
+ALTER TABLE public.person
+ADD CONSTRAINT address_id
+FOREIGN KEY (address_id)
+REFERENCES public.address(address_id);
