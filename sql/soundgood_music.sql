@@ -30,7 +30,7 @@ CREATE TABLE public.instructor_instruments (
 );
 
 CREATE TABLE public.person (
-    id serial PRIMARY KEY,
+    person_id serial PRIMARY KEY,
     person_number varchar(12) NOT NULL,
     first_name varchar(50) NOT NULL,
     last_name varchar(50) NOT NULL,
@@ -106,12 +106,12 @@ REFERENCES public.contact_person(contact_id);
 ALTER TABLE public.student
 ADD CONSTRAINT student_id
 FOREIGN KEY (student_id)
-REFERENCES public.person(id);
+REFERENCES public.person(person_id);
 
 ALTER TABLE public.instructor_instruments
 ADD CONSTRAINT person_id
 FOREIGN KEY (person_id)
-REFERENCES public.person(id);
+REFERENCES public.person(person_id);
 
 ALTER TABLE public.rental_record
 ADD CONSTRAINT instrument_id
@@ -121,17 +121,17 @@ REFERENCES public.renting_instrument(instrument_id);
 ALTER TABLE public.rental_record
 ADD CONSTRAINT person_id
 FOREIGN KEY (person_id)
-REFERENCES public.person(id);
+REFERENCES public.person(person_id);
 
 ALTER TABLE public.instructor
 ADD CONSTRAINT person_id
 FOREIGN KEY (person_id)
-REFERENCES public.person(id);
+REFERENCES public.person(person_id);
 
 ALTER TABLE public.lesson
 ADD CONSTRAINT person_id
 FOREIGN KEY (person_id)
-REFERENCES public.person(id);
+REFERENCES public.person(person_id);
 
 ALTER TABLE public.lesson
 ADD CONSTRAINT price_id
