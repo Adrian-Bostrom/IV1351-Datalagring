@@ -15,12 +15,19 @@ ORDER BY
 SELECT 
     teacher_id,
     (SELECT 
-        CONCAT(first_name, ' ', last_name) 
+        first_name
      FROM 
         person 
      WHERE 
         person.person_id = teacher_id
-    ) AS teacher_name,
+    ) AS first_name,
+    (SELECT 
+        last_name
+     FROM 
+        person 
+     WHERE 
+        person.person_id = teacher_id
+    ) AS last_name,
     teacher_count as No_Of_Lessons
 FROM 
     teaching_count_temp
