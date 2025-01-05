@@ -19,7 +19,7 @@ SELECT
      FROM 
         person 
      WHERE 
-        person.id = teacher_id
+        person.person_id = teacher_id
     ) AS teacher_name,
     teacher_count as No_Of_Lessons
 FROM 
