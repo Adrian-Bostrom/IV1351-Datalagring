@@ -1,37 +1,39 @@
+DROP TABLE IF EXISTS teaching_count_temp;
+
 CREATE TEMP TABLE teaching_count_temp AS
-SELECT 
+SELECT
     DATE_TRUNC('month', date) AS month,
     person_id AS teacher_id,
     COUNT(*) AS teacher_count
-FROM 
+FROM
     public.lesson
-GROUP BY 
-    month, 
+GROUP BY
+    month,
     teacher_id
-ORDER BY 
+ORDER BY
     month;
 
 
-SELECT 
+SELECT
     teacher_id,
-    (SELECT 
+    (SELECT
         first_name
-     FROM 
-        person 
-     WHERE 
+     FROM
+        person
+     WHERE
         person.person_id = teacher_id
     ) AS first_name,
-    (SELECT 
+    (SELECT
         last_name
-     FROM 
-        person 
-     WHERE 
+     FROM
+        person
+     WHERE
         person.person_id = teacher_id
     ) AS last_name,
     teacher_count as No_Of_Lessons
-FROM 
+FROM
     teaching_count_temp
-WHERE 
+WHERE
     EXTRACT(MONTH FROM month) = EXTRACT(MONTH FROM CURRENT_DATE)
     AND EXTRACT(YEAR FROM month) = EXTRACT(YEAR FROM CURRENT_DATE)
     AND teacher_count > 0;
