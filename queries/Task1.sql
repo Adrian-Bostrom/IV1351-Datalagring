@@ -58,6 +58,8 @@ SELECT
         ensemble_count_temp.month, 
         group_count_temp.month
     ), 'Month') AS month,
+    (individual_count_temp.individual_count +ensemble_count_temp.ensemble_count + group_count_temp.group_count)
+    AS Total,
     COALESCE(individual_count_temp.individual_count,0) AS individual_count,
     COALESCE(ensemble_count_temp.ensemble_count,0) AS ensemble_count,
     COALESCE(group_count_temp.group_count,0) AS group_count
