@@ -1,3 +1,8 @@
+CREATE TYPE lesson_level_enum AS ENUM ('Beginner', 'Intermediate', 'Advanced');
+CREATE TYPE lesson_type_enum AS ENUM ('Individual', 'Group', 'Ensemble');
+CREATE TYPE genre_enum AS ENUM ('Classical', 'Rock', 'Pop', 'Soul', 'Jazz');
+CREATE TYPE instrument_enum AS ENUM ('Violin', 'Synth', 'Trombone', 'Bass', 'Drums', 'Harp', 'Piano', 'Guitar');
+
 CREATE TABLE public.contact_person (
     contact_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     relation varchar(500) NOT NULL,
@@ -74,19 +79,19 @@ CREATE TABLE public.group_lesson (
     lesson_id INT PRIMARY KEY, --FK (inherited?)
     min_enrollments INT NOT NULL,
     max_places INT NOT NULL,
-    lesson_level INT NOT NULL,
+    lesson_level lesson_level_enum NOT NULL,
     instrument varchar(500)
 );
 
 CREATE TABLE public.individual_lesson (
     lesson_id INT PRIMARY KEY, --FK (inherited?)
-    lesson_level INT NOT NULL,
+    lesson_level lesson_level_enum NOT NULL,
     instrument varchar(500)
 );
 
 CREATE TABLE public.ensemble (
     lesson_id INT PRIMARY KEY, --FK (inherited?)
-    genre varchar(500) NOT NULL,
+    genre genre_enum NOT NULL,
     min_num_students INT NOT NULL,
     max_num_students INT NOT NULL
 );
@@ -95,8 +100,8 @@ CREATE TABLE public.pricing_scheme (
     price_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     price decimal(10,2) NOT NULL,
     change_date DATE NOT NULL,
-    lesson_level INT NOT NULL,
-    lesson_type VARCHAR(500) NOT NULL
+    lesson_level lesson_level_enum NOT NULL,
+    lesson_type lesson_type_enum NOT NULL
 );
 
 
