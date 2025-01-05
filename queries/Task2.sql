@@ -1,6 +1,6 @@
-SELECT sibling_count, COUNT(*) AS num_siblings
+SELECT sibling_count, (COUNT(*) * (sibling_count + 1)) AS num_siblings
 FROM (
-    SELECT COUNT(*) AS sibling_count
+    SELECT (COUNT(*) - 1) AS sibling_count
     FROM student
     WHERE sibling_id IS NOT NULL
     GROUP BY sibling_id
@@ -12,4 +12,4 @@ FROM (
     WHERE sibling_id IS NULL
 ) AS sibling_groups
 GROUP BY sibling_count
-ORDER BY sibling_count DESC;
+ORDER BY sibling_count ASC;
